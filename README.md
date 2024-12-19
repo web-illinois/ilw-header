@@ -33,16 +33,85 @@ On sites with more than one page, the site name should link to the site homepage
   <a slot="site-name" href="/">Website with Multiple Pages</a>
 </ilw-header>
 ```
+## Parent unit
 
-## Accessibility Notes and Use
+If the website represents a department within another unit, the parent unit slot can be used to link to an additional website for the parent unit:
 
-Consider accessibility, both for building the component and for its use:
+```html
+<ilw-header slot="header">
+  <a slot="parent-unit" href="http://parent.example.com/">Parent Unit</a>
+  <a slot="site-name" href="/">Website with Parent Unit</a>
+</ilw-header>
+```
+## Navigation
 
-- Is there sufficient color contrast?
-- Can the component be fully understood without colors?
-- Does the component need alt text or ARIA roles?
-- Can the component be navigated with a keyboard? Is the tab order correct?
-- Are focusable elements interactive, and interactive elements focusable?
-- Are form fields, figures, fieldsets and other interactive elements labelled?
+The main navigation is a multi-level list of links that should not change within the site.
 
-## External References
+```html
+<ilw-header slot="header">
+  <il-main-nav slot="navigation">
+    <ul>
+      <li><a href="/about">About</a></li>
+      <li><a href="/academics">Academics</a></li>
+      <li><a href="/research">Research</a></li>
+      <li><a href="/alumni">Alumni</a></li>
+    </ul>
+  </il-main-nav>
+</ilw-header>
+```
+For information, see the full documentation for the main navigation component.
+
+## Search
+
+A simple search form can be added to the header via the search slot.
+
+```html
+<ilw-header slot="header">
+  <form method="get" action="/search" slot="search" role="search">
+    <input type="search" name="query" aria-labelledby="search-button">
+    <button type="submit" id="search-button">Search</button>
+  </form>
+</ilw-header>
+```
+The following aspects of the markup are required:
+
+- The form element must contain the search role
+- The form element must contain the search slot
+- The input type must be search
+- The input must use the submit button for its accessible label.
+- The submit button must contain an id linking it to the input.
+
+A customized search form might include additional hidden inputs:
+
+```html
+<ilw-header slot="header">
+  <form method="post" action="/search.php" slot="search" role="search">
+    <input type="hidden" name="api-key" value="67890">
+    <input type="search" name="q" aria-labelledby="search-button">
+    <button type="submit" id="search-button" name="search" value="1">Search</button>
+  </form>
+</ilw-header>
+```
+### External References
+
+[The Magnifying-Glass Icon in Search Design: Pros and Cons](https://www.nngroup.com/articles/magnifying-glass-icon/), Neilsen Norman Group, February 23, 2014
+[Using aria-labelledby](https://www.w3.org/WAI/tutorials/forms/labels/#using-aria-labelledby)
+
+## Eyebrow
+
+The top-right (or "eyebrow") section can be used for utility navigation:
+
+```html
+<ilw-header slot="header">
+  <nav slot="eyebrow" aria-label="Utility">
+    <ul>
+      <li><a href="/apply">Apply</a></li>
+      <li><a href="/visit">Visit</a></li>
+      <li><a href="/donate">Donate</a></li>
+    </ul>
+  </nav>
+</ilw-header>
+```
+- Link labels must be short. One-word labels are prefered.
+- Limit links to 3 or fewer.
+- Only one level of links is allowed. Additional levels of lists may not be displayed.
