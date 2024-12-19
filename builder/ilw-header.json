@@ -1,9 +1,9 @@
 {
-    "title": "<%= _.startCase(name.slice(4)) %>",
-    "tag": "<%= name %>",
-    "github": "https://github.com/web-illinois/<%= name %>/",
+    "title": "Header",
+    "tag": "ilw-header",
+    "github": "https://github.com/web-illinois/ilw-header/",
     "type": "web component",
-    "element-name": "<%= name %>",
+    "element-name": "ilw-header",
     "description": "Description for builder.",
     "purpose": "Imperative mood purpose for builder homepage.",
     "toolkit-version": "",
