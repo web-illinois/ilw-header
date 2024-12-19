@@ -59,7 +59,7 @@ The main navigation is a multi-level list of links that should not change within
   </il-main-nav>
 </ilw-header>
 ```
-For information, see the full documentation for the main navigation component.
+For information, see the full documentation for the [ilw-header-menu](https://github.com/web-illinois/ilw-header-menu).
 
 ## Search
 
@@ -95,6 +95,7 @@ A customized search form might include additional hidden inputs:
 ### External References
 
 [The Magnifying-Glass Icon in Search Design: Pros and Cons](https://www.nngroup.com/articles/magnifying-glass-icon/), Neilsen Norman Group, February 23, 2014
+
 [Using aria-labelledby](https://www.w3.org/WAI/tutorials/forms/labels/#using-aria-labelledby)
 
 ## Eyebrow
