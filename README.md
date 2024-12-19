@@ -19,7 +19,7 @@ The header contains five content slots:
 
 ## Site Name
 
-For a single page site, the site name can be an h1 or a div as required:
+For a single page site, the site name can be an `h1` or a `div` as required:
 
 ```html
 <ilw-header slot="header">
@@ -35,7 +35,7 @@ On sites with more than one page, the site name should link to the site homepage
 ```
 ## Parent unit
 
-If the website represents a department within another unit, the parent unit slot can be used to link to an additional website for the parent unit:
+If the website represents a department within another unit, the parent unit `slot` can be used to link to an additional website for the parent unit:
 
 ```html
 <ilw-header slot="header">
@@ -63,7 +63,7 @@ For information, see the full documentation for the main navigation component.
 
 ## Search
 
-A simple search form can be added to the header via the search slot.
+A simple search form can be added to the header via the search `slot`.
 
 ```html
 <ilw-header slot="header">
