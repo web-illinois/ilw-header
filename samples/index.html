@@ -11,7 +11,172 @@
 </head>
 
 <body style="margin: 0; padding: 0;">
-<ilw-header></ilw-header>
+<ilw-header>
+    <a slot="primary-unit" href="https://example.edu/">Campus Header Component</a>
+    <a slot="site-name" href="https://example.edu/">Sample Header</a>
+
+    <nav slot="links" aria-label="Utility">
+        <ul>
+            <li><a href="/apply">Apply</a></li>
+            <li><a href="/visit">Visit</a></li>
+            <li><a href="/give">Give</a></li>
+        </ul>
+    </nav>
+
+    <form slot="search" method="get" action="/search" role="search" data-testid="search">
+        <input type="search" name="search" aria-labelledby="search-button">
+        <button id="search-button" type="submit">Search</button>
+    </form>
+
+    <il-header-nav slot="navigation">
+        <ul>
+            <li><a href="https://example.edu/Galena">Galena</a></li>
+            <li>
+                <il-header-nav-section data-testid="Copper">
+                    <span slot="label">Copper</span>
+                    <ul>
+                        <li><a href="https://example.edu/Marcasite" data-testid="Marcasite">Marcasite</a></li>
+                        <li>
+                            <il-header-nav-section data-testid="Barite">
+                                <span slot="label">Barite</span>
+                                <ul>
+                                    <li><a href="https://example.edu/Cerussite" data-testid="Cerussite">Cerussite</a></li>
+                                    <li>
+                                        <il-header-nav-section data-testid="Siderite">
+                                            <span slot="label">Siderite</span>
+                                            <ul>
+                                                <li><a href="https://example.edu/Smithsonite" data-testid="Smithsonite">Smithsonite</a></li>
+                                                <li>
+                                                    <il-header-nav-section data-testid="Granite">
+                                                        <span slot="label">Granite</span>
+                                                        <ul>
+                                                            <li><a href="https://example.edu/Jasper" data-testid="Jasper">Jasper</a></li>
+                                                            <li>
+                                                                <il-header-nav-section data-testid="Conglomerate">
+                                                                    <span slot="label">Conglomerate</span>
+                                                                    <ul>
+                                                                        <li><a href="https://example.edu/Sand" data-testid="Sand">Sand</a></li>
+                                                                    </ul>
+                                                                </il-header-nav-section>
+                                                            </li>
+                                                            <li>
+                                                                <il-header-nav-section-with-link data-testid="Sandstone">
+                                                                    <a slot="link" href="https://example.edu/Sandstone">Sandstone</a>
+                                                                    <ul>
+                                                                        <li><a href="https://example.edu/Basalt">Basalt</a></li>
+                                                                    </ul>
+                                                                </il-header-nav-section-with-link>
+                                                            </li>
+                                                        </ul>
+                                                    </il-header-nav-section>
+                                                </li>
+                                                <li>
+                                                    <il-header-nav-section-with-link data-testid="Agate">
+                                                        <a slot="link" href="https://example.edu/Agate">Agate</a>
+                                                        <ul>
+                                                            <li><a href="https://example.edu/Quartzite">Quartzite</a></li>
+                                                        </ul>
+                                                    </il-header-nav-section-with-link>
+                                                </li>
+                                            </ul>
+                                        </il-header-nav-section>
+                                    </li>
+                                    <li>
+                                        <il-header-nav-section-with-link data-testid="Amphibole">
+                                            <a slot="link" href="https://example.edu/Amphibole">Amphibole</a>
+                                            <ul>
+                                                <li><a href="https://example.edu/Pyroxene">Pyroxene</a></li>
+                                            </ul>
+                                        </il-header-nav-section-with-link>
+                                    </li>
+                                </ul>
+                            </il-header-nav-section>
+                        </li>
+                        <li>
+                            <il-header-nav-section-with-link data-testid="Feldspar">
+                                <a slot="link" href="https://example.edu/Feldspar">Feldspar</a>
+                                <ul>
+                                    <li><a href="https://example.edu/Sphalerite">Sphalerite</a></li>
+                                    <li>
+                                        <il-header-nav-section>
+                                            <span slot="label">Fluorite</span>
+                                            <ul>
+                                                <li><a href="https://example.edu/Witherite">Witherite</a></li>
+                                            </ul>
+                                        </il-header-nav-section>
+                                    </li>
+                                    <li>
+                                        <il-header-nav-section-with-link>
+                                            <a slot="link" href="https://example.edu/Dolomite">Dolomite</a>
+                                            <ul>
+                                                <li><a href="https://example.edu/Muscovite">Muscovite</a></li>
+                                            </ul>
+                                        </il-header-nav-section-with-link>
+                                    </li>
+                                </ul>
+                            </il-header-nav-section-with-link>
+                        </li>
+                    </ul>
+                </il-header-nav-section>
+            </li>
+            <li>
+                <il-header-nav-section-with-link data-testid="Melanterite">
+                    <a slot="link" href="https://example.edu/Melanterite">Melanterite</a>
+                    <ul>
+                        <li><a href="https://example.edu/Silt">Silt</a></li>
+                        <li>
+                            <il-header-nav-section>
+                                <span slot="label">Biotite</span>
+                                <ul>
+                                    <li><a href="https://example.edu/Limonite">Limonite</a></li>
+                                    <li>
+                                        <il-header-nav-section>
+                                            <span slot="label">Pyrite</span>
+                                            <ul>
+                                                <li><a href="https://example.edu/Chalcedony">Chalcedony</a></li>
+                                            </ul>
+                                        </il-header-nav-section>
+                                    </li>
+                                    <li>
+                                        <il-header-nav-section-with-link>
+                                            <a slot="link" href="https://example.edu/Quartz">Quartz</a>
+                                            <ul>
+                                                <li><a href="https://example.edu/Garnet">Garnet</a></li>
+                                            </ul>
+                                        </il-header-nav-section-with-link>
+                                    </li>
+                                </ul>
+                            </il-header-nav-section>
+                        </li>
+                        <li>
+                            <il-header-nav-section-with-link>
+                                <a slot="link" href="https://example.edu/Gneiss">Gneiss</a>
+                                <ul>
+                                    <li><a href="https://example.edu/Gabbro">Gabbro</a></li>
+                                    <li>
+                                        <il-header-nav-section>
+                                            <span slot="label">Peridotite</span>
+                                            <ul>
+                                                <li><a href="https://example.edu/Syenite">Syenite</a></li>
+                                            </ul>
+                                        </il-header-nav-section>
+                                    </li>
+                                    <li>
+                                        <il-header-nav-section-with-link>
+                                            <a slot="link" href="https://example.edu/Porphyry">Porphyry</a>
+                                            <ul>
+                                                <li><a href="https://example.edu/Schist">Schist</a></li>
+                                            </ul>
+                                        </il-header-nav-section-with-link>
+                                    </li>
+                                </ul>
+                            </il-header-nav-section-with-link>
+                        </li>
+                    </ul>
+                </il-header-nav-section-with-link>
+            </li>
+        </ul>
+</ilw-header>
 </body>
 
 </html>

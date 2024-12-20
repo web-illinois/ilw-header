@@ -1,0 +1,305 @@
+/* Links */
+
+ilw-header *[slot="links"] {
+  all: initial;
+  grid-area: eyebrow;
+  align-self: start;
+
+  ul {
+    all: initial;
+    display: flex;
+    padding-top: 6px;
+    padding-bottom: 28px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  li {
+    all: initial;
+    display: block;
+    position: relative;
+    padding: 0 0 0 1rem;
+  }
+
+  li::before {
+    content: '';
+    position: absolute;
+    left: .5rem;
+    top: 20%;
+    background-color: var(--il-orange);
+    height: 60%;
+    width: 2px;
+  }
+
+  li:first-child {
+    padding-left: 0;
+  }
+
+  li:first-child::before {
+    display: none;
+  }
+
+  a {
+    all: initial;
+    display: inline-block;
+    padding: 0 .25rem;
+    color: var(--il-blue);
+    font: 700 1rem/1.375rem var(--il-font-sans);
+  }
+
+  a:hover, a:focus {
+    color: var(--il-altgeld);
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  a:focus {
+    color: var(--ilw-link--focus-color);
+    background-color: var(--ilw-link--focus-background-color);
+    outline: var(--ilw-link--focus-outline);
+  }
+}
+
+ilw-header:not(data-initialized) *[slot="links"] {
+  display: none;
+}
+
+ilw-header[data-initialized="1"] *[slot="links"] {
+  display: block;
+}
+
+ilw-header[compact] *[slot="links"] {
+  padding: .5rem;
+
+  ul {
+    padding-bottom: 0;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 930px) {
+  ilw-header:not(data-init) *[slot="links"] {
+    display: block;
+  }
+}
+/* Search */
+
+ilw-header *[slot="search"] {
+  all: initial;
+  display: none;
+  grid-area: search;
+  align-self: flex-end;
+  justify-content: flex-end;
+}
+
+ilw-header[compact] *[slot="search"] {
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+}
+
+ilw-header form[slot="search"][role="search"] {
+  box-sizing: border-box;
+  padding-bottom: 20px;
+
+  & > input[type="search"][aria-labelledby] {
+    all: initial;
+    box-sizing: border-box;
+    position: relative;
+    display: inline-block;
+    padding: 0 .5rem;
+    color: var(--il-blue);
+    font: 1rem/2rem var(--il-font-sans);
+    z-index: 1;
+    background-color: white;
+    width: 100%;
+    height: 2.25rem;
+    border: 2px solid #d8d8d8;
+    border-radius: .25em 0 0 .25rem;
+    margin-right: -1px;
+
+    &:focus {
+      z-index: 10;
+      outline: var(--ilw-link--focus-outline);
+    }
+  }
+
+  & > button[type="submit"][id] {
+    all: initial;
+    box-sizing: border-box;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    font: 1rem var(--il-font-sans);
+    background-image: url("https://cdn.brand.illinois.edu/icons/duo/blue/search.svg");
+    background-repeat: no-repeat;
+    background-position: .5rem center;
+    background-size: 1.25rem;
+    cursor: pointer;
+    z-index: 1;
+    background-color: white;
+    white-space: nowrap;
+    padding: 0 2em 0 2em;
+    color: var(--il-blue);
+    border: 2px solid #d8d8d8;
+    border-radius: 0 .25em .25rem 0;
+    margin-left: -1px;
+    height: 2.25rem;
+
+    &:focus {
+      z-index: 10;
+      outline: var(--ilw-link--focus-outline);
+    }
+  }
+}
+
+
+ilw-header {
+  all: initial;
+  background-color: white;
+  color: var(--il-blue);
+  font: 400 1rem/1 var(--il-font-sans);
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  border-top: 8px solid var(--il-orange);
+  border-bottom: .125rem solid #E8E9EB;
+
+  display: grid;
+  grid-template-columns: 30px auto 30px;
+  grid-template-rows: 63px auto auto;
+  grid-template-areas: ". illinois ." ". primary_unit ." ". site_name .";
+
+  &:before {
+    content: '';
+    display: block;
+    width: 44px;
+    height: 51px;
+    position: absolute;
+    top: -8px;
+    left: 30px;
+    z-index: 10;
+    background: var(--il-blue) url(../svg/block-i.svg) no-repeat;
+    background-size: 22px 31px;
+    background-position: 10px 10px;
+  }
+
+  &:after {
+    content: '';
+    display: block;
+    width: 379px;
+    height: 11px;
+    position: absolute;
+    top: 13px;
+    left: 85px;
+    z-index: 10;
+    background: url(../svg/wordmark.svg) no-repeat;
+  }
+
+  ilw-header *[slot="search"] {
+    display: none;
+  }
+}
+
+ilw-header[compact] {
+  *[slot="links"], *[slot="search"] {
+    border-top: 1px solid #C0C0C0;
+  }
+}
+
+@media (min-width: 930px) {
+  ilw-header {
+    grid-template-columns: 30px 435px auto auto 355px 30px;
+    grid-template-rows: 63px auto auto auto;
+    grid-template-areas: ". illinois eyebrow eyebrow eyebrow ." ". primary_unit primary_unit primary_unit search ." ". site_name site_name site_name search ." "nav nav nav nav nav nav";
+
+    *[slot="links"] {
+      display: block;
+    }
+
+    *[slot="search"] {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  ilw-header {
+    grid-template-columns: auto 435px 135px 215px 355px auto;
+    grid-template-areas: ". illinois eyebrow eyebrow eyebrow ." ". primary_unit primary_unit primary_unit search ." ". site_name site_name site_name search ." "nav nav nav nav nav nav";
+
+    &:before {
+      left: calc(50% - 570px);
+    }
+
+    &:after {
+      left: calc(50% - 515px);
+    }
+  }
+}
+
+/* Site name */
+
+ilw-header *[slot="site-name"] {
+  all: initial;
+  grid-area: site_name;
+  display: inline-block;
+  padding-bottom: 20px;
+  color: var(--il-blue);
+  font: 700 normal 24px/30px var(--il-font-sans);
+}
+
+ilw-header[data-initialized] *[slot="site-name"] {
+  padding-bottom: 0;
+}
+
+ilw-header a[slot="site-name"] {
+  cursor: pointer;
+
+  &:hover {
+    color: var(--il-altgeld);
+    text-decoration: underline;
+  }
+
+  &:focus {
+    color: var(--ilw-link--focus-color);
+    background-color: var(--ilw-link--focus-background-color);
+    outline: var(--ilw-link--focus-outline);
+  }
+}
+
+/* Primary unit */
+
+ilw-header *[slot="primary-unit"] {
+  all: initial;
+  display: inline-block;
+  grid-area: primary_unit;
+  color: var(--il-blue);
+  font: 400 normal 18px/24px var(--il-font-sans);
+}
+
+ilw-header a[slot="primary-unit"] {
+  cursor: pointer;
+
+  &:hover {
+    color: var(--il-altgeld);
+    text-decoration: underline;
+  }
+
+  &:focus {
+    color: var(--ilw-link--focus-color);
+    background-color: var(--ilw-link--focus-background-color);
+    outline: var(--ilw-link--focus-outline);
+  }
+}
+
+ilw-header[data-initialized="1"] {
+  display: block;
+
+  &:before, &:after {
+    display: none;
+  }
+}

@@ -98,13 +98,13 @@ A customized search form might include additional hidden inputs:
 
 [Using aria-labelledby](https://www.w3.org/WAI/tutorials/forms/labels/#using-aria-labelledby)
 
-## Eyebrow
+## Links
 
-The top-right (or "eyebrow") section can be used for utility navigation:
+The top-right section can be used for utility navigation:
 
 ```html
 <ilw-header slot="header">
-  <nav slot="eyebrow" aria-label="Utility">
+  <nav slot="links" aria-label="Utility">
     <ul>
       <li><a href="/apply">Apply</a></li>
       <li><a href="/visit">Visit</a></li>
@@ -116,3 +116,4 @@ The top-right (or "eyebrow") section can be used for utility navigation:
 - Link labels must be short. One-word labels are prefered.
 - Limit links to 3 or fewer.
 - Only one level of links is allowed. Additional levels of lists may not be displayed.
+- The nav element must have an accessible name (e.g. "Utility").

@@ -6,4 +6,171 @@
 }
 
 :host {
+    display: block;
+}
+.main {
+    display: grid;
+}
+.full.header .main {
+    grid-template-columns: 30px 435px auto auto 355px 30px;
+    grid-template-rows: 63px auto auto auto;
+    grid-template-areas: ". illinois links links links ." ". identity identity identity search ." "nav nav nav nav nav nav";
+}
+.compact.header .main {
+    grid-template-columns: 30px auto 60px 30px;
+    grid-template-rows: 63px auto;
+    grid-template-areas: ". illinois illinois ." ". identity toggle .";
+}
+.illinois {
+    grid-area: illinois;
+}
+.illinois a {
+    all: initial;
+    position: relative;
+    top: -8px;
+    display: block;
+    width: 44px;
+    height: 51px;
+    overflow: hidden;
+    cursor: pointer;
+}
+.illinois .block-i {
+    display: block;
+    width: 44px;
+    height: 51px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: var(--il-blue);
+}
+.illinois .block-i svg {
+    display: block;
+    position: absolute;
+    width: 22px;
+    height: 31px;
+    left: 10px;
+    top: 10px;
+}
+.illinois .block-i .outline {
+    fill: white;
+}
+.illinois .block-i .fill {
+    fill: var(--il-orange);
+}
+.illinois .wordmark {
+    display: block;
+    width: 379px;
+    height: 11px;
+    position: absolute;
+    top: 21px;
+    left: 55px;
+    z-index: 10;
+}
+.illinois .wordmark svg {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    fill: var(--il-blue);
+}
+.illinois a:hover .wordmark svg {
+    fill: var(--il-altgeld);
+}
+.links {
+    grid-area: links;
+}
+.identity {
+    grid-area: identity;
+    padding-bottom: 20px;
+}
+.search {
+    grid-area: search;
+}
+.nav {
+    grid-area: nav;
+}
+.menu-toggle {
+    grid-area: toggle;
+    justify-self: end;
+    align-self: center;
+    padding-bottom: 20px;
+}
+.menu-toggle button {
+    all: initial;
+    display: inline-block;
+    cursor: pointer;
+}
+.menu-toggle .button {
+    all: initial;
+    display: inline-block;
+    position: relative;
+    width: 2.25rem;
+    height: 2.25rem;
+    background: var(--il-blue);
+    color: white;
+    text-transform: uppercase;
+    border-radius: .25rem;
+    cursor: pointer;
+}
+.menu-toggle .icon {
+    position: absolute;
+    left: .25rem;;
+    top: .25rem;
+    display: block;
+    width: 1.75rem;
+    height: 1.75rem;
+}
+.menu-toggle .icon svg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    fill: currentColor;
+}
+.menu-toggle .label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    text-indent: 300%;
+    white-space: nowrap;
+}
+.menu {
+    display: none;
+    background: #E8E9EB;
+}
+.expanded.header .menu {
+    display: block;
+}
+@media (min-width: 600px) {
+    .compact.header .main {
+        grid-template-columns: 30px auto 120px 30px;
+        grid-template-rows: 63px auto;
+        grid-template-areas: ". illinois illinois ." ". identity toggle .";
+    }
+    .illinois a {
+        width: 445px;
+    }
+    .menu-toggle .button {
+        width: auto;
+    }
+    .menu-toggle .label {
+        position: relative;
+        width: auto;
+        height: auto;
+        overflow: visible;
+        text-indent: 0;
+        padding: 0 .75rem 0 2.25rem;
+        font: 600 1.25rem/2.25rem var(--il-font-sans);
+    }
+}
+@media (min-width: 1200px) {
+    .full.header .main {
+        grid-template-columns: auto 435px 135px 215px 355px auto;
+        grid-template-areas: ". illinois links links links ." ". identity identity identity search ." "nav nav nav nav nav nav";
+    }
 }
