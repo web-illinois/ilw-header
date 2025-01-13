@@ -10,6 +10,7 @@
 }
 .main {
     display: grid;
+    margin: 0 var(--ilw-margin--side, 0);
 }
 .full.header .main {
     grid-template-columns: 30px 435px auto auto 355px 30px;
@@ -147,6 +148,9 @@
     display: block;
 }
 @media (min-width: 600px) {
+    .main {
+        margin: 0;
+    }
     .compact.header .main {
         grid-template-columns: 30px auto 120px 30px;
         grid-template-rows: 63px auto;
@@ -169,8 +173,16 @@
     }
 }
 @media (min-width: 1200px) {
+    .main {
+        margin: 0 var(--ilw-margin--side, 0);
+    }
     .full.header .main {
-        grid-template-columns: auto 435px 135px 215px 355px auto;
+        grid-template-columns: 0 435px 135px 215px 1fr 0;
         grid-template-areas: ". illinois links links links ." ". identity identity identity search ." "nav nav nav nav nav nav";
+    }
+}
+@media (max-width: 600px) {
+    .main {
+        margin: 0;
     }
 }
