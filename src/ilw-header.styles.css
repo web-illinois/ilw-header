@@ -77,6 +77,21 @@
 .illinois a:hover .wordmark svg {
     fill: var(--il-altgeld);
 }
+.illinois a:hover .wordmark::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: var(--il-altgeld);
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+}
+.illinois a:focus .wordmark svg {
+    fill: var(--ilw-link--focus-color);
+    background-color: var(--ilw-link--focus-background-color);
+    outline: var(--ilw-link--focus-outline);
+}
 .links {
     grid-area: links;
 }
