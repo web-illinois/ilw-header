@@ -205,10 +205,10 @@ class Header extends LitElement {
           <div class="search">
             <slot name="search"></slot>
           </div>
-          <div class="nav">
-            <slot name="navigation"></slot>
-          </div>
         </div>
+          <div class="nav">
+              <slot name="navigation"></slot>
+          </div>
       </header>`
     }
 
