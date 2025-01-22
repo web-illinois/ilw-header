@@ -4,9 +4,10 @@
     "github": "https://github.com/web-illinois/ilw-header/",
     "type": "web component",
     "element-name": "ilw-header",
-    "description": "Description for builder.",
-    "purpose": "Imperative mood purpose for builder homepage.",
-    "toolkit-version": "",
-    "production-version": "",
-    "development-version": "1.0.0-alpha"
+    "description": "Branded Header for the Illinois Toolkit",
+    "purpose": "provide branding and navigation for UIUC websites",
+    "toolkit-version": "1.0.0",
+    "production-version": "1.0.0",
+    "development-version": "1.0.0-alpha",
+    "builder-override-link": "/notes/header/index.html"
 }
