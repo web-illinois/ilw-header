@@ -49,14 +49,14 @@ The main navigation is a multi-level list of links that should not change within
 
 ```html
 <ilw-header slot="header">
-  <il-main-nav slot="navigation">
+  <ilw-header-menu slot="navigation">
     <ul>
       <li><a href="/about">About</a></li>
       <li><a href="/academics">Academics</a></li>
       <li><a href="/research">Research</a></li>
       <li><a href="/alumni">Alumni</a></li>
     </ul>
-  </il-main-nav>
+  </ilw-header-menu>
 </ilw-header>
 ```
 For information, see the full documentation for the [ilw-header-menu](https://github.com/web-illinois/ilw-header-menu).
