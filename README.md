@@ -17,6 +17,10 @@ The header contains five content slots:
 - The search slot contains a basic search engine.
 - The eyebrow slot contains links which are displayed in the top-right corner of the header.
 
+## Attributes
+
+* `menu`: If set to `none`, the menu will not appear. This will hide the menu button, the navigation slot, search slot, and eyebrow slot on both mobile and desktop versions. 
+
 ## Site Name
 
 For a single page site, the site name can be an `h1` or a `div` as required:
@@ -75,8 +79,8 @@ A simple search form can be added to the header via the search `slot`.
 ```
 The following aspects of the markup are required:
 
-- The form element must contain the search role
-- The form element must contain the search slot
+- The form or div element must contain the search role
+- The form or div element must contain the search slot
 - The input type must be search
 - The input must use the submit button for its accessible label.
 - The submit button must contain an id linking it to the input.
@@ -117,3 +121,12 @@ The top-right section can be used for utility navigation:
 - Limit links to 3 or fewer.
 - Only one level of links is allowed. Additional levels of lists may not be displayed.
 - The nav element must have an accessible name (e.g. "Utility").
+
+## Form login and logout
+
+Either the links slot or the search slot may contain login information for applications. If this is the case, you can use the following format
+
+- A `<div>` or `<form>` with an appropriate aria-label attribute
+- An optional `<span>` that has a the user that is logged in
+- An `<a>` or `<button>` that goes to the application's login or logout area. This may be a submit form.
+- If this is a form, you may include additional hidden form elements
