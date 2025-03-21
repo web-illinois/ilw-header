@@ -10,7 +10,6 @@
     <script type="module" src="/src/ilw-header.js"></script>
     <script type="module" src="http://localhost:5174/src/ilw-footer.ts"></script>
     <script type="module" src="http://localhost:5175/src/ilw-header-menu.ts"></script>
-
 </head>
 
 <body style="margin: 0; padding: 0;">
@@ -18,13 +17,10 @@
     <a slot="primary-unit" href="https://example.edu/">Campus Header Component</a>
     <a slot="site-name" href="https://example.edu/">Sample Header</a>
 
-    <nav slot="links" aria-label="Utility">
-        <ul>
-            <li><a href="/apply">Apply</a></li>
-            <li><a href="/visit">Visit</a></li>
-            <li><a href="/give">Give</a></li>
-        </ul>
-    </nav>
+    <div slot="links" aria-label="Login">
+        <span>testuser@illinois.edu</span>
+        <button id="logout-button">Logout</button>
+    </div>
 
     <form slot="search" method="get" action="/search" role="search" data-testid="search">
         <input type="search" name="search" aria-labelledby="search-button">

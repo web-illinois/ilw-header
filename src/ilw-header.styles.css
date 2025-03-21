@@ -162,6 +162,9 @@
 .expanded.header .menu {
     display: block;
 }
+.hide {
+    display: none;
+}
 @media (min-width: 600px) {
     .compact.header .main {
         grid-template-columns: 0px auto 120px 0px;

@@ -8,6 +8,7 @@ class Header extends LitElement {
         return {
             compact: { type: Boolean, reflect: true },
             expanded: { type: Boolean },
+            menu: { type: String, reflect: true },
             _hasMenu: {state: true},
             _menuVisible: {state: true}
         };
@@ -64,20 +65,8 @@ class Header extends LitElement {
         this.expanded = !this.expanded;
     }
 
-    hasLinks() {
-        return this.querySelector('*[slot="links"]');
-    }
-
-    hasNavigation() {
-        return this.querySelector('*[slot="navigation"]');
-    }
-
-    hasSearch() {
-        return this.querySelector('*[slot="search"]');
-    }
-
     hasMenuContents() {
-        return this.hasLinks() || this.hasSearch() || this.hasNavigation();
+        return this.menu != 'none';
     }
 
     setCompactModeBasedOnWidth() {
@@ -150,7 +139,7 @@ class Header extends LitElement {
 
     renderMenu() {
         return html`
-      <div id="menu" class="menu">
+      <div id="menu" class="menu ${this.hasMenuContents() ? '' : 'hide'}">
         <div class="links">
           <slot name="links"></slot>
         </div>
@@ -180,7 +169,7 @@ class Header extends LitElement {
           </div>
           ${this.hasMenuContents() ? this.renderMenuToggle() : ''}
         </div>
-        ${this.hasMenuContents() ? this.renderMenu() : ''}
+        ${this.renderMenu()}
       </header>`
     }
 
@@ -191,7 +180,7 @@ class Header extends LitElement {
           <div class="illinois">
             ${this.renderBranding()}
           </div>
-          <div class="links">
+          <div class="links ${this.hasMenuContents() ? '' : 'hide'}">
             <slot name="links"></slot>
           </div>
           <div class="identity">
@@ -202,11 +191,11 @@ class Header extends LitElement {
               <slot name="site-name"></slot>
             </div>
           </div>
-          <div class="search">
+          <div class="search ${this.hasMenuContents() ? '' : 'hide'}">
             <slot name="search"></slot>
           </div>
         </div>
-          <div class="nav">
+          <div class="nav ${this.hasMenuContents() ? '' : 'hide'}" >
               <slot name="navigation"></slot>
           </div>
       </header>`
