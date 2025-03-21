@@ -99,7 +99,7 @@ ilw-header[compact] *[slot="search"] {
   flex-direction: row;
 }
 
-ilw-header form[slot="search"][role="search"] {
+ilw-header *[slot="search"][role="search"] {
   box-sizing: border-box;
   padding-bottom: 20px;
 
@@ -125,7 +125,7 @@ ilw-header form[slot="search"][role="search"] {
     }
   }
 
-  & > button[type="submit"][id] {
+  & > button[id] {
     all: initial;
     box-sizing: border-box;
     display: block;
@@ -303,3 +303,51 @@ ilw-header[data-initialized="1"] {
     display: none;
   }
 }
+
+ilw-header[data-initialized="1"] div[slot="links"] {
+  display: flex;
+  padding-top: 6px;
+  padding-bottom: 28px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+ilw-header[data-initialized="1"] div[slot="links"] span, ilw-header[data-initialized="1"] *[slot="search"] span {
+  color: var(--il-blue);
+  font: 700 normal 16px / 20px var(--il-font-sans);
+  display: inline-block;
+  margin-right: 10px;
+  padding-top: 2px;
+}
+
+ilw-header[data-initialized="1"] div[slot="links"] button, ilw-header[data-initialized="1"] div[slot="links"] a, 
+ilw-header[data-initialized="1"] *[slot="search"] button, ilw-header[data-initialized="1"] *[slot="search"] a {
+  background-color: var(--il-blue);
+  border: 2px solid var(--il-blue);
+  border-radius: .25em;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  padding: 0 10px;
+  font: 700 normal 16px / 20px var(--il-font-sans);
+  letter-spacing: .01em;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color .3s;
+}
+
+ilw-header[data-initialized="1"] div[slot="links"] button:hover, ilw-header[data-initialized="1"] div[slot="links"] a:hover,
+ilw-header[data-initialized="1"] *[slot="search"] button:hover, ilw-header[data-initialized="1"] *[slot="search"] a:hover {
+  background-color: #fff;
+  color: var(--il-blue);
+  text-decoration: underline;
+}
+
+ilw-header[data-initialized="1"] div[slot="links"] button:focus, ilw-header[data-initialized="1"] div[slot="links"] a:focus,
+ilw-header[data-initialized="1"] *[slot="search"] button:focus, ilw-header[data-initialized="1"] *[slot="search"] a:focus {
+  background-color: var(--il-arches-lighter-3);
+  color: var(--il-blue);
+  text-decoration: underline;
+}
+
