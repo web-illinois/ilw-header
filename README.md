@@ -20,6 +20,7 @@ The header contains five content slots:
 ## Attributes
 
 * `menu`: If set to `none`, the menu will not appear. This will hide the menu button, the navigation slot, search slot, and eyebrow slot on both mobile and desktop versions. 
+* `source`: The UTM source set for the header going back to the Illinois web site. Defaults to *Illinois_App*. 
 
 ## Site Name
 

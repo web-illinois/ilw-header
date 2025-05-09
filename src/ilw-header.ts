@@ -1,39 +1,72 @@
 import { LitElement, html, unsafeCSS } from "lit";
+// @ts-ignore
 import styles from './ilw-header.styles.css?inline';
 import './ilw-header.css';
+import { property } from "lit/decorators.js";
 
-class Header extends LitElement {
+export class Header extends LitElement {
+  @property({
+    attribute: true
+  })
+  source: String;
 
-    static get properties() {
-        return {
-            compact: { type: Boolean, reflect: true },
-            expanded: { type: Boolean },
-            menu: { type: String, reflect: true },
-            _hasMenu: {state: true},
-            _menuVisible: {state: true}
-        };
-    }
+  @property({
+    attribute: true,
+    reflect: true
+  })
+  compact: Boolean;
 
-    static get styles() {
-        return unsafeCSS(styles);
-    }
+  @property({
+    attribute: true,
+    reflect: true
+  })
+  expanded: Boolean;
 
-    constructor() {
-        super();
-        this.handleWindowClick = this.handleWindowClick.bind(this);
-        this.handleWindowKeydown = this.handleWindowKeydown.bind(this);
-        this.handleWindowResize = this.handleWindowResize.bind(this);
-    }
+  @property({
+    attribute: true,
+    reflect: true
+  })
+  menu: String;
 
-    connectedCallback() {
-        super.connectedCallback();
-        this.setAttribute('data-initialized', '1');
-        window.addEventListener('click', this.handleWindowClick);
-        window.addEventListener('keydown', this.handleWindowKeydown);
-        window.addEventListener('resize', this.handleWindowResize);
-        this.setCompactModeBasedOnWidth();
-    }
+      
+  @property({
+    attribute: false,
+    state: true
+  })
+  _menuVisible: String;
 
+      
+  @property({
+    attribute: false,
+    state: true
+  })
+  _hasMenu: String;
+
+  static get styles() {
+      return unsafeCSS(styles);
+  }
+
+  constructor() {
+      super();
+      this.source = 'Illinois_App';
+      this.compact = false;
+      this.expanded = false;
+      this.menu = '';
+      this._menuVisible = '';
+      this._hasMenu = '';
+      this.handleWindowClick = this.handleWindowClick.bind(this);
+      this.handleWindowKeydown = this.handleWindowKeydown.bind(this);
+      this.handleWindowResize = this.handleWindowResize.bind(this);
+  }
+
+  connectedCallback() {
+      super.connectedCallback();
+      this.setAttribute('data-initialized', '1');
+      window.addEventListener('click', this.handleWindowClick);
+      window.addEventListener('keydown', this.handleWindowKeydown);
+      window.addEventListener('resize', this.handleWindowResize);
+      this.setCompactModeBasedOnWidth();
+  }
     disconnectedCallback() {
         super.disconnectedCallback();
         window.removeEventListener('click', this.handleWindowClick);
@@ -41,15 +74,15 @@ class Header extends LitElement {
         window.removeEventListener('resize', this.handleWindowResize);
     }
 
-    handleWindowClick(evt) {
+    handleWindowClick(evt: MouseEvent) {
         if (this.compact) {
-            if (this.expanded && !this.contains(evt.target)) {
+            if (this.expanded && !this.contains(evt.target as HTMLElement)) {
                 this.expanded = false;
             }
         }
     }
 
-    handleWindowKeydown(evt) {
+    handleWindowKeydown(evt: KeyboardEvent) {
         if (this.compact) {
             if (evt.key === 'Escape' && this.expanded) {
                 this.expanded = false;
@@ -67,6 +100,10 @@ class Header extends LitElement {
 
     hasMenuContents() {
         return this.menu != 'none';
+    }
+
+    getUtmSource() {
+      return this.source || 'Illinois_App';
     }
 
     setCompactModeBasedOnWidth() {
@@ -99,7 +136,7 @@ class Header extends LitElement {
 
     renderBranding() {
         return html`
-      <a href="https://illinois.edu">
+      <a href="https://illinois.edu?utm_source=${this.getUtmSource()}&utm_medium=web&utm_campaign=Header">
         <div class="block-i" aria-hidden="true">${this.renderBlockI()}</div>
         <div class="wordmark">${this.renderWordmark()}</div>
       </a>`
@@ -206,4 +243,4 @@ class Header extends LitElement {
     }
 }
 
-customElements.define('ilw-header', Header);
+customElements.get('ilw-header') || customElements.define('ilw-header', Header);
