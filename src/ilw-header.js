@@ -206,4 +206,4 @@ class Header extends LitElement {
     }
 }
 
-customElements.define('ilw-header', Header);
+customElements.get('ilw-header') || customElements.define('ilw-header', Header);
