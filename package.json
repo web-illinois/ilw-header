@@ -4,7 +4,7 @@
     "repository": "github:web-illinois/ilw-header",
     "private": false,
     "license": "MIT",
-    "version": "1.2.1",
+    "version": "1.2.2",
     "type": "module",
     "files": [
         "src/**",
@@ -13,7 +13,7 @@
     ],
     "exports": {
         ".": {
-            "import": "./src/ilw-header.js",
+            "import": "./dist/ilw-header.js",
             "require": "./dist/ilw-header.cjs",
             "default": "./dist/ilw-header.js"
         },
