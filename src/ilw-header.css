@@ -330,8 +330,8 @@ ilw-header[data-initialized="1"] *[slot="search"] button, ilw-header[data-initia
   color: #fff;
   cursor: pointer;
   display: inline-block;
-  padding: 0 10px;
-  font: 700 normal 16px / 20px var(--il-font-sans);
+  padding: 6px 20px;
+  font: 700 1.188rem / 1.25rem var(--il-font-sans);
   letter-spacing: .01em;
   text-align: center;
   text-decoration: none;
