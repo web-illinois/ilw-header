@@ -4,7 +4,7 @@
     "repository": "github:web-illinois/ilw-header",
     "private": false,
     "license": "MIT",
-    "version": "1.2.2",
+    "version": "1.2.3",
     "type": "module",
     "files": [
         "src/**",
@@ -25,7 +25,7 @@
     "module":"./dist/ilw-header.js",
     "scripts": {
         "dev": "vite",
-        "build": "vite build --config vite.build.config.js --emptyOutDir",
+        "build": "vite build --config vite.transpile.config.ts --emptyOutDir && vite build --config vite.build.config.ts --emptyOutDir",
         "preview": "vite preview",
         "prepack": "npm run build"
     },
@@ -33,6 +33,9 @@
         "lit": "3.1.3"
     },
     "devDependencies": {
-        "vite": "^5.4.11"
+        "prettier": "^3.5.1",
+        "typescript": "^5.7.3",
+        "vite": "^5.4.18",
+        "vite-plugin-dts": "^4.5.0"
     }
 }
