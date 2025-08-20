@@ -1,4 +1,4 @@
-import { LitElement, html, unsafeCSS } from "lit";
+import { LitElement, html, unsafeCSS, CSSResultGroup } from "lit";
 // @ts-ignore
 import styles from './ilw-header.styles.css?inline';
 import './ilw-header.css';
@@ -44,7 +44,7 @@ export class Header extends LitElement {
   })
   _hasMenu: String;
 
-  static get styles() {
+   static get styles() : CSSResultGroup {
       return unsafeCSS(styles);
   }
 

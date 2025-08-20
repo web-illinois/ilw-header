@@ -10,7 +10,7 @@
 }
 .main {
     display: grid;
-    margin: 0 var(--ilw-margin--side, 0);
+    margin: 0 calc(var(--ilw-margin--side, 0) - 8px);
 }
 .full.header .main {
     grid-template-columns: 0px 435px auto auto 355px 0px;
@@ -98,6 +98,7 @@
 .identity {
     grid-area: identity;
     padding-bottom: 20px;
+    padding-left: 9px;
 }
 .search {
     grid-area: search;
