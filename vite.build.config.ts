@@ -4,12 +4,12 @@ import { defineConfig } from "vite";
 export default defineConfig({
     root: "src",
     build: {
-        outDir: "../dist",
+        outDir: "../dist/cdn",
         lib: {
             name: "ilw-header",
             entry: "ilw-header.ts",
             fileName: "ilw-header",
-            formats: ["es", "cjs", "umd"],
+            formats: ["es"],
         },
         rollupOptions: {
             output: {
