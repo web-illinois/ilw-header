@@ -2,8 +2,9 @@ import { LitElement, html, unsafeCSS, CSSResultGroup } from "lit";
 // @ts-ignore
 import styles from './ilw-header.styles.css?inline';
 import './ilw-header.css';
-import { property } from "lit/decorators.js";
+import { customElement, property } from "lit/decorators.js";
 
+@customElement("ilw-filter")
 export class Header extends LitElement {
   @property({
     attribute: true
@@ -246,4 +247,8 @@ export class Header extends LitElement {
     }
 }
 
-customElements.get('ilw-header') || customElements.define('ilw-header', Header);
+declare global {
+    interface HTMLElementTagNameMap {
+        "ilw-header": Header;
+    }
+}
