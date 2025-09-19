@@ -4,7 +4,7 @@ import styles from './ilw-header.styles.css?inline';
 import './ilw-header.css';
 import { customElement, property } from "lit/decorators.js";
 
-@customElement("ilw-filter")
+@customElement("ilw-header")
 export class Header extends LitElement {
   @property({
     attribute: true
