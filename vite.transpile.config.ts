@@ -13,11 +13,10 @@ export default defineConfig({
             formats: ["es"],
         },
         rollupOptions: {
-            external: [/^@?lit/],
+            external: [/^@?lit/, /^@illinois-toolkit/],
             output: {
-                assetFileNames: (chunkInfo) => {
-                    if (chunkInfo.name === "style.css") return "ilw-header.css";
-                    return "assets/[name]-[hash][extname]"; // vite default
+                assetFileNames: () => {
+                    return "[name][extname]";
                 },
             },
         },
