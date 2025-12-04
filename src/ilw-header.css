@@ -140,12 +140,17 @@ ilw-header *[slot="search"][role="search"] {
     z-index: 1;
     background-color: white;
     white-space: nowrap;
-    padding: 0 2em 0 2em;
+    padding: 0 2em;
     color: var(--il-blue);
     border: 2px solid #d8d8d8;
     border-radius: 0 .25em .25rem 0;
     margin-left: -1px;
     height: 2.25rem;
+
+    &:empty {
+      background-position: center;
+      padding: 0 1.6em;
+    }
 
     &:focus {
       z-index: 10;
