@@ -140,7 +140,7 @@ export class Header extends LitElement {
 
     renderBranding() {
         return html`
-      <a href="https://illinois.edu?utm_source=${this.getUtmSource()}&utm_medium=web&utm_campaign=Header">
+      <a href="https://illinois.edu?utm_source=${this.getUtmSource()}&utm_medium=web&utm_campaign=Header" aria-label="University of Illinois Urbana-Champaign">
         <div class="block-i">${this.renderBlockI()}</div>
         <div class="wordmark">${this.renderWordmark()}</div>
       </a>`
