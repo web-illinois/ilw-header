@@ -275,6 +275,26 @@ ilw-header a[slot="site-name"] {
     outline: var(--ilw-link--focus-outline);
   }
 }
+/* If site-name is wrapped (e.g. <h1 slot="site-name"><a ...>..</a></h1>),
+   style the nested link consistently. */
+ilw-header *[slot="site-name"] a {
+  color: inherit;
+  font: inherit;
+  text-decoration: none;
+}
+
+/* Hover/focus states for the nested link */
+ilw-header *[slot="site-name"] a:hover {
+  color: var(--il-altgeld);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+ilw-header *[slot="site-name"] a:focus {
+  color: var(--ilw-link--focus-color);
+  background-color: var(--ilw-link--focus-background-color);
+  outline: var(--ilw-link--focus-outline);
+}
 
 /* Primary unit */
 

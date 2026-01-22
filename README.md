@@ -31,11 +31,17 @@ For a single page site, the site name can be an `h1` or a `div` as required:
   <div slot="site-name">Single-Page Website</div>
 </ilw-header>
 ```
-On sites with more than one page, the site name should link to the site homepage:
+On sites with more than one page, the site name should link to the site homepage. If you use an `h1` for the site name for accessiblity, it should contain the link.
 
 ```html
 <ilw-header slot="header">
   <a slot="site-name" href="/">Website with Multiple Pages</a>
+</ilw-header>
+```
+
+```html
+<ilw-header slot="header">
+  <h1 slot="site-name"><a href="/">Website with Multiple Pages</a></h1>
 </ilw-header>
 ```
 ## Parent unit
@@ -102,6 +108,8 @@ A customized search form might include additional hidden inputs:
 [The Magnifying-Glass Icon in Search Design: Pros and Cons](https://www.nngroup.com/articles/magnifying-glass-icon/), Neilsen Norman Group, February 23, 2014
 
 [Using aria-labelledby](https://www.w3.org/WAI/tutorials/forms/labels/#using-aria-labelledby)
+
+
 
 ## Links
 
