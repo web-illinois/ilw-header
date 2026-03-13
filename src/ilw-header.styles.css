@@ -128,7 +128,15 @@
     text-transform: uppercase;
     border-radius: .25rem;
     cursor: pointer;
+    border: 1px solid var(--il-blue);
 }
+
+.menu-toggle button:hover .button, .menu-toggle button:focus .button {
+    background: white;
+    color: var(--il-blue);
+    border: 1px solid var(--il-blue);
+}
+
 .menu-toggle .icon {
     position: absolute;
     left: .25rem;;
