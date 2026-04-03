@@ -130,13 +130,16 @@
     cursor: pointer;
     border: 1px solid var(--il-blue);
 }
-
-.menu-toggle button:hover .button, .menu-toggle button:focus .button {
+.menu-toggle button:hover .button {
     background: white;
     color: var(--il-blue);
     border: 1px solid var(--il-blue);
 }
-
+.menu-toggle button:focus .button {
+    color: var(--ilw-link--focus-color);
+    background-color: var(--ilw-link--focus-background-color);
+    outline: var(--ilw-link--focus-outline);
+}
 .menu-toggle .icon {
     position: absolute;
     left: .25rem;;
