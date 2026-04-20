@@ -6,6 +6,15 @@ import { customElement, property } from "lit/decorators.js";
 
 @customElement("ilw-header")
 export class Header extends LitElement {
+  private static readonly FOCUSABLE_SELECTOR = [
+    'a[href]',
+    'button:not([disabled])',
+    'input:not([disabled]):not([type="hidden"])',
+    'select:not([disabled])',
+    'textarea:not([disabled])',
+    '[tabindex]:not([tabindex="-1"])'
+  ].join(', ');
+
   @property({
     attribute: true
   })
@@ -90,7 +99,83 @@ export class Header extends LitElement {
             if (evt.key === 'Escape' && this.expanded) {
                 this.expanded = false;
             }
+
+            if (evt.key === 'Tab' && this.expanded) {
+                this.handleMobileMenuTabLoop(evt);
+            }
         }
+    }
+
+    handleMobileMenuTabLoop(evt: KeyboardEvent) {
+        const focusables = this.getMobileMenuFocusables();
+        const closeButton = focusables[0];
+        const lastFocusable = focusables[focusables.length - 1];
+        const activeElement = this.getDeepActiveElement();
+
+        if (!closeButton || !lastFocusable || !activeElement) return;
+
+        if (!evt.shiftKey && activeElement === lastFocusable) {
+            evt.preventDefault();
+            closeButton.focus();
+        }
+
+        if (evt.shiftKey && activeElement === closeButton) {
+            evt.preventDefault();
+            lastFocusable.focus();
+        }
+    }
+
+    getMobileMenuFocusables(): HTMLElement[] {
+        const menuToggleButton = this.shadowRoot?.querySelector('.menu-toggle button') as HTMLElement | null;
+        const slotNames = ['links', 'search', 'navigation'];
+        const focusables = menuToggleButton ? [menuToggleButton] : [];
+
+        for (const slotName of slotNames) {
+            const slot = this.shadowRoot?.querySelector(`slot[name="${slotName}"]`) as HTMLSlotElement | null;
+            if (!slot) continue;
+
+            for (const element of slot.assignedElements({ flatten: true })) {
+                focusables.push(...this.getFocusableElementsFromNode(element));
+            }
+        }
+
+        return Array.from(new Set(focusables));
+    }
+
+    getFocusableElementsFromNode(node: Element): HTMLElement[] {
+        const focusables: HTMLElement[] = [];
+        if (node instanceof HTMLElement && this.isFocusable(node)) {
+            focusables.push(node);
+        }
+
+        const descendants = Array.from(node.querySelectorAll<HTMLElement>(Header.FOCUSABLE_SELECTOR));
+        focusables.push(...descendants.filter((element) => this.isFocusable(element)));
+
+        const host = node as HTMLElement;
+        if (host.shadowRoot) {
+            const shadowDescendants = Array.from(host.shadowRoot.querySelectorAll<HTMLElement>(Header.FOCUSABLE_SELECTOR));
+            focusables.push(...shadowDescendants.filter((element) => this.isFocusable(element)));
+        }
+
+        return focusables;
+    }
+
+    isFocusable(element: HTMLElement): boolean {
+        const isDisabled = (element as HTMLButtonElement | HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement).disabled;
+        if (isDisabled || element.hasAttribute('disabled')) return false;
+        if (element.getAttribute('aria-hidden') === 'true') return false;
+        if (element.tabIndex < 0) return false;
+        return element.getClientRects().length > 0;
+    }
+
+    getDeepActiveElement(): HTMLElement | null {
+        let activeElement = document.activeElement as HTMLElement | null;
+
+        while (activeElement?.shadowRoot?.activeElement) {
+            activeElement = activeElement.shadowRoot.activeElement as HTMLElement;
+        }
+
+        return activeElement;
     }
 
     handleWindowResize() {
