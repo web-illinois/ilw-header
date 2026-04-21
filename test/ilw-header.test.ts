@@ -14,5 +14,5 @@ test("renders slotted content", async () => {
     const element = screen.getByText("Campus Header Component");
     await expect.element(element).toBeInTheDocument();
     const elementSite = screen.getByText("Sample Header");
-    await elementSite.element(element).toBeInTheDocument();
+    await expect.element(elementSite).toBeInTheDocument();
 });
