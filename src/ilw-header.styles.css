@@ -87,6 +87,12 @@
     bottom: -2px;
     left: 0;
 }
+
+header.compact.header .illinois a:focus .block-i svg, header.full.header .illinois a:focus .block-i svg {
+    outline: solid 12px var(--il-orange);
+    background-color: var(--il-orange);
+}
+
 .illinois a:focus .wordmark svg {
     fill: var(--ilw-link--focus-color);
     background-color: var(--ilw-link--focus-background-color);
