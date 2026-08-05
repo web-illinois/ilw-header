@@ -111,8 +111,9 @@ export class Header extends LitElement {
         const closeButton = focusables[0];
         const lastFocusable = focusables[focusables.length - 1];
         const activeElement = this.getDeepActiveElement();
+        const useMegaMenu = (this.querySelector('ilw-header-megamenu') as HTMLElement | null) != null;
 
-        if (!closeButton || !lastFocusable || !activeElement) return;
+        if (useMegaMenu || !closeButton || !lastFocusable || !activeElement) return;
 
         if (!evt.shiftKey && activeElement === lastFocusable) {
             evt.preventDefault();
