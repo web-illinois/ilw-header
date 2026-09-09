@@ -21,8 +21,8 @@
             "import": "./dist/ilw-header.css"
         }
     },
-    "main":"./dist/ilw-header.js",
-    "module":"./dist/ilw-header.js",
+    "main": "./dist/ilw-header.js",
+    "module": "./dist/ilw-header.js",
     "scripts": {
         "dev": "vite",
         "build": "tsc --noEmit && vite build --config vite.transpile.config.ts --emptyOutDir && vite build --config vite.build.config.ts --emptyOutDir",
@@ -46,6 +46,7 @@
         "typescript": "^5.8.3",
         "vite": "^7.0.5",
         "vite-plugin-dts": "^4.5.4",
+        "vitest": "^3.2.4",
         "vitest-browser-lit": "^0.1.0"
     }
 }

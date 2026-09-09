@@ -204,6 +204,25 @@ export class Header extends LitElement {
         }
     }
 
+    handleDarkModeChange(event : Event) {
+      const checkbox = event.target as HTMLInputElement;
+      const enabled = checkbox.checked;
+
+      // Save preference in cookie
+      this.setDarkModeCookie(enabled);
+
+      // Notify ilw-page immediately
+      window.dispatchEvent(
+        new CustomEvent("ilw-dark-mode-changed", {
+          detail: { enabled }
+        })
+      );
+    }
+
+    private setDarkModeCookie(enabled: boolean) {
+      document.cookie = `ilw-dark-mode=${enabled}; path=/`;
+    }
+
     renderBlockI() {
         return html`
       <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 34.67">
@@ -325,7 +344,24 @@ export class Header extends LitElement {
           <div class="nav ${this.hasMenuContents() ? '' : 'hide'}" >
               <slot name="navigation"></slot>
           </div>
+          <div class="dark-mode-control">
+            ${this.renderDarkModeControl()}
+          </div>
       </header>`
+    }
+
+    renderDarkModeControl() {
+        return html`
+      <div class="theme-switch">
+      <input
+        type="checkbox"
+        id="themeToggle"
+        @change=${this.handleDarkModeChange}
+      />
+      <label for="themeToggle">
+        Dark Mode
+      </label>
+    </div>`
     }
 
     render() {
