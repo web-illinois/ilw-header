@@ -1,13 +1,22 @@
 {
-    "title": "Header",
-    "tag": "ilw-header",
-    "github": "https://github.com/web-illinois/ilw-header/",
-    "type": "web component",
-    "element-name": "ilw-header",
-    "description": "Branded Header for the Illinois Toolkit",
-    "purpose": "provide branding and navigation for UIUC websites",
-    "toolkit-version": "1.5",
-    "production-version": "1.5",
-    "development-version": "latest",
-    "builder-override-link": "/notes/header/index.html"
+  "title": "Header",
+  "id": "ilw-header",
+  "type": "Web Component",
+  "repository-name": "ilw-header",
+  "description": "Add the standard Illinois header with university branding, site identification, search, and primary navigation.",
+  "purpose": "provide branding and navigation for UIUC websites",
+  "customtemplates": [
+    {
+      "name": "Custom Template",
+      "path": "/notes/header/index.html",
+      "notes": "Use the guided custom builder for this component."
+    }
+  ],
+  "versions": [
+    {
+      "name": "1.1",
+      "notes": "",
+      "template": "1.1"
+    }
+  ]
 }
