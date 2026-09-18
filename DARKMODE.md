@@ -1,111 +1,169 @@
-                    
-                    
-                    
-                    
-                    
-                    
-                    ilw-header
-                       │
-              User clicks toggle
-                       │
-             ┌─────────┴─────────┐
-             ▼                   ▼
-        Set cookie          Dispatch event
-     ilw-dark-mode=true          │
-             │                   │
-             │                   ▼
-             │              ilw-page
-             │                   │
-             │            Update data-theme
-             │                   │
-             │                   ▼
-             │            dark-mode.css
-             │
-             ▼
-    Persists preference
-    across page loads/sites
+# Dark Mode Implementation Guide
 
+This guide explains how an application can enable Dark Mode using the Illinois Toolkit.
 
-## Picture of what stays in which repository:
+## 1. Add Dark Mode CSS
 
-================================================
-ILW-HEADER REPOSITORY
-================================================
+Include the Illinois Toolkit Dark Mode CSS in the application.
 
-src/
-│
-├── ilw-header.ts
-│     │
-│     ├── Dark Mode checkbox HTML
-│     ├── checkbox change handler
-│     ├── read dark-mode cookie
-│     ├── write dark-mode cookie
-│     └── dispatch "ilw-dark-mode-changed"
-│
-├── ilw-header.css
-│     │
-│     └── Dark Mode checkbox/label styling
-│
-└── ilw-header.styles.css
-      │
-      └── Leave existing styles unless your
-          project's existing architecture says
-          otherwise
+The CSS should support both system preference and explicit theme selection:
 
+```css
+@media (prefers-color-scheme: dark) {
+    /* Dark Mode styles */
+}
 
-================================================
-ILW-PAGE REPOSITORY
-================================================
+[data-theme="dark"] {
+    /* Dark Mode styles */
+}
 
-src/
-│
-├── ilw-page.ts
-│     │
-│     ├── read dark-mode cookie on page load
-│     ├── set <html data-theme="dark/light">
-│     └── listen for "ilw-dark-mode-changed"
-│
-└── dark-mode.css
-      │
-      └── ALL actual page dark-mode styling
+[data-theme="light"] {
+    /* Light Mode styles */
+}
+```
 
+## 2. Enable the Dark Mode Checkbox
 
-## Finally the application becomes:
+Add the `dark-mode-visible` attribute to `ilw-header`:
 
-    <ilw-header>
-    └── Dark Mode checkbox
-              │
-              ▼
-        writes cookie
-              │
-              ▼
-        fires event
-              │
-              ▼
-    <ilw-page>
-    └── changes data-theme
-              │
-              ▼
-      dark-mode.css
+```html
+<ilw-header dark-mode-visible></ilw-header>
+```
 
+The checkbox is hidden by default, so applications must explicitly enable it.
 
-## My Test order is supposed to be:
-① npm test.  (If this fails check node -v if its not 22.23.2 then type, nvm use 22.23.2 and then check nvm -v again then run npm test)
-       ↓
-② npm run dev 
-       ↓
-③ See Dark Mode checkbox (Open http://localhost:5173/samples)
-       ↓
-④ Check cookie in DevTools
-       ↓
-⑤ Verify custom event
-       ↓
-⑥ Open ilw-page
-       ↓
-⑦ Click checkbox
-       ↓
-⑧ Page changes immediately
-       ↓
-⑨ Refresh
-       ↓
-⑩ Theme persists
+## 3. System/Browser Preference
+
+If the user has **not selected a Dark Mode preference**, the application follows the browser/OS setting.
+
+```css
+@media (prefers-color-scheme: dark) {
+    /* Dark Mode */
+}
+```
+
+For example:
+
+| System Setting | No Cookie | Result |
+| -------------- | --------- | ------ |
+| Light          | No        | Light  |
+| Dark           | No        | Dark   |
+
+## 4. User Preference
+
+When the user changes the Dark Mode checkbox, the preference is saved in the `ilw-dark-mode` cookie.
+
+| Cookie                | Result     |
+| --------------------- | ---------- |
+| `ilw-dark-mode=true`  | Dark Mode  |
+| `ilw-dark-mode=false` | Light Mode |
+
+The user's saved preference takes priority over the system preference.
+
+For example:
+
+* System = Dark + cookie = `false` → **Light**
+* System = Light + cookie = `true` → **Dark**
+
+## 5. Theme Attribute
+
+When the user makes an explicit selection, the application uses the `data-theme` attribute on `<html>`.
+
+Dark Mode:
+
+```html
+<html data-theme="dark">
+```
+
+Light Mode:
+
+```html
+<html data-theme="light">
+```
+
+If there is no saved preference, `data-theme` does not need to be set. The `prefers-color-scheme` CSS determines the theme.
+
+## 6. Use Toolkit Color Variables
+
+Dark Mode should use the Illinois Toolkit semantic color variables, such as:
+
+```css
+--ilw-color--background
+--ilw-color--text
+--ilw-color--border
+--ilw-color--link
+--ilw-color--heading
+--ilw-color--control
+--ilw-color--table-background
+```
+
+Example:
+
+```css
+[data-theme="dark"] {
+    --ilw-color--background: #191919;
+    --ilw-color--text: #f4f4f4;
+}
+```
+
+## 7. Application Example
+
+```html
+<ilw-page>
+    <ilw-header dark-mode-visible></ilw-header>
+
+    <main>
+        <h1>My Application</h1>
+        <p>This application supports Dark Mode.</p>
+    </main>
+</ilw-page>
+```
+
+## 8. Test Dark Mode
+
+Test these scenarios:
+
+* [ ] No cookie + System Light → Light
+* [ ] No cookie + System Dark → Dark
+* [ ] Cookie `true` + System Light → Dark
+* [ ] Cookie `false` + System Dark → Light
+* [ ] Check checkbox → Dark Mode
+* [ ] Uncheck checkbox → Light Mode
+* [ ] Refresh page → Preference is retained
+
+### Verify in Browser
+
+Check system preference:
+
+```js
+window.matchMedia('(prefers-color-scheme: dark)').matches
+```
+
+Check cookie:
+
+```js
+document.cookie
+```
+
+Check explicit theme:
+
+```js
+document.documentElement.getAttribute('data-theme')
+```
+
+## Summary
+
+The Dark Mode priority is:
+
+```text
+User preference
+      ↓
+ilw-dark-mode cookie
+      ↓
+System/browser preference
+      ↓
+prefers-color-scheme
+```
+
+**If the user has not made a choice, follow the system preference.
+If the user has made a choice, follow the saved preference.**
