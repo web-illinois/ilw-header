@@ -4,7 +4,7 @@
   "type": "Web Component",
   "repository-name": "ilw-header",
   "description": "Add the standard Illinois header with university branding, site identification, search, and primary navigation.",
-  "purpose": "provide branding and navigation for UIUC websites",
+  "purpose": "provide branding and navigation for Illinois websites",
   "customtemplates": [
     {
       "name": "Development Only",
