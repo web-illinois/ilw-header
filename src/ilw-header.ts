@@ -58,7 +58,7 @@ export class Header extends LitElement {
     type: Boolean,
     attribute: 'dark-mode-visible'
   })
-  darkModeVisible = true;
+  darkModeVisible = false;
 
   static get styles() : CSSResultGroup {
       return unsafeCSS(styles);
