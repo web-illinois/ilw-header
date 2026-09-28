@@ -54,7 +54,13 @@ export class Header extends LitElement {
   })
   _hasMenu: String;
 
-   static get styles() : CSSResultGroup {
+  @property({ 
+    type: Boolean,
+    attribute: 'dark-mode-visible'
+  })
+  darkModeVisible = false;
+
+  static get styles() : CSSResultGroup {
       return unsafeCSS(styles);
   }
 
@@ -204,6 +210,48 @@ export class Header extends LitElement {
         }
     }
 
+    handleDarkModeChange(event : Event) {
+      const checkbox = event.target as HTMLInputElement;
+      const enabled = checkbox.checked;
+
+      // Save preference in cookie
+      this.setDarkModeCookie(enabled);
+      //this.applyTheme(enabled);
+
+      // Notify ilw-page immediately
+      window.dispatchEvent(
+        new CustomEvent("ilw-dark-mode-changed", {
+          detail: { enabled }
+        })
+      );
+      
+    }
+
+    private applyTheme(darkMode: boolean): void {
+      document.documentElement.dataset.theme =
+        darkMode ? 'dark' : 'light';
+    } 
+
+    private setDarkModeCookie(enabled: boolean) {
+
+      //with the document.cookie = `ilw-dark-mode=${enabled}; path="/"; if the user is on illinois.edu domain, the cookie will be set for host only.
+      // so it will not be accessible to other subdomains like my.illinois.edu, etc. 
+      // If we want the same preference to be available across all subdomains
+      // then we need to scope the cookie to parent doamin.
+      // document.cookie = `ilw-dark-mode=${enabled}; path=/; domain=illinois.edu`;
+      // In other words, cookies domain attribute determines which hosts can access the cookie. 
+      // If not specified, it defaults to the host of the current document URL, not including subdomains.
+      document.cookie = `ilw-dark-mode=${enabled}; path=/;`; 
+
+    }
+    private getDarkModeCookie(): boolean {
+      
+      return document.cookie
+        .split('; ')
+        .find(row => row.startsWith('ilw-dark-mode='))
+        ?.split('=')[1] === 'true';
+    }
+
     renderBlockI() {
         return html`
       <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 34.67">
@@ -302,7 +350,7 @@ export class Header extends LitElement {
 
     renderFull() {
         return html`
-      <header class="full header">
+      <header class="full header" dark-mode-visible>
         <div class="main">
           <div class="illinois">
             ${this.renderBranding()}
@@ -322,10 +370,31 @@ export class Header extends LitElement {
             <slot name="search"></slot>
           </div>
         </div>
-          <div class="nav ${this.hasMenuContents() ? '' : 'hide'}" >
-              <slot name="navigation"></slot>
-          </div>
+        <div class="dark-mode-control">
+          ${this.renderDarkModeControl()}
+        </div>
+        <div class="nav ${this.hasMenuContents() ? '' : 'hide'}" >
+            <slot name="navigation"></slot>
+        </div>
       </header>`
+    }
+
+    renderDarkModeControl() {
+      if (this.darkModeVisible) {
+        const darkModeEnabled = this.getDarkModeCookie();
+          return html`
+        <div class="theme-switch">
+          <input
+            type="checkbox"
+            id="themeToggle"
+            .checked=${darkModeEnabled}
+            @change=${this.handleDarkModeChange}
+          />
+          <label for="themeToggle">
+            Dark Mode
+          </label>
+        </div>`
+      }
     }
 
     render() {

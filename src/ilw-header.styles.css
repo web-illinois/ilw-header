@@ -42,7 +42,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    background: var(--il-blue);
+    background: var(--ilw-header--text);
 }
 .illinois .block-i svg {
     display: block;
@@ -56,7 +56,7 @@
     fill: white;
 }
 .illinois .block-i .fill {
-    fill: var(--il-orange);
+    fill: var(--ilw-header--accent);
 }
 .illinois .wordmark {
     display: block;
@@ -72,25 +72,25 @@
     position: relative;
     width: 100%;
     height: 100%;
-    fill: var(--il-blue);
+    fill: var(--ilw-header--text);
 }
 .illinois a:hover .wordmark svg {
-    fill: var(--il-altgeld);
+    fill: var(--ilw-header--link-hover);
 }
 .illinois a:hover .wordmark::after {
     content: '';
     display: block;
     width: 100%;
     height: 1px;
-    background-color: var(--il-altgeld);
+    background-color: var(--ilw-header--link-hover);
     position: absolute;
     bottom: -2px;
     left: 0;
 }
 
 header.compact.header .illinois a:focus .block-i svg, header.full.header .illinois a:focus .block-i svg {
-    outline: solid 12px var(--il-orange);
-    background-color: var(--il-orange);
+    outline: solid 12px var(--ilw-header--accent);
+    background-color: var(--ilw-header--accent);
 }
 
 .illinois a:focus .wordmark svg {
@@ -129,17 +129,17 @@ header.compact.header .illinois a:focus .block-i svg, header.full.header .illino
     position: relative;
     width: 2.25rem;
     height: 2.25rem;
-    background: var(--il-blue);
+    background: var(--ilw-header--text);
     color: white;
     text-transform: uppercase;
     border-radius: .25rem;
     cursor: pointer;
-    border: 1px solid var(--il-blue);
+    border: 1px solid var(--ilw-header--text);
 }
 .menu-toggle button:hover .button {
     background: white;
-    color: var(--il-blue);
-    border: 1px solid var(--il-blue);
+    color: var(--ilw-header--text);
+    border: 1px solid var(--ilw-header--text);
 }
 .menu-toggle button:focus .button {
     color: var(--ilw-link--focus-color);
