@@ -234,14 +234,14 @@ export class Header extends LitElement {
 
     private setDarkModeCookie(enabled: boolean) {
 
-      //with the current implementation, if the user is on illinois.edu domain, the cookie will be set for host only.
+      //with the document.cookie = `ilw-dark-mode=${enabled}; path="/"; if the user is on illinois.edu domain, the cookie will be set for host only.
       // so it will not be accessible to other subdomains like my.illinois.edu, etc. 
       // If we want the same preference to be available across all subdomains
       // then we need to scope the cookie to parent doamin.
       // document.cookie = `ilw-dark-mode=${enabled}; path=/; domain=illinois.edu`;
       // In other words, cookies domain attribute determines which hosts can access the cookie. 
       // If not specified, it defaults to the host of the current document URL, not including subdomains.
-      document.cookie = `ilw-dark-mode=${enabled}; path=/`; 
+      document.cookie = `ilw-dark-mode=${enabled}; path=/;`; 
 
     }
     private getDarkModeCookie(): boolean {

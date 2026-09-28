@@ -165,6 +165,10 @@ The corresponding TypeScript property is:
 darkModeVisible = false;
 ```
 
+NOTE: Set the `data-dark-mode-supported` attribute to true on html element to opt-in 
+the dark mode feature in the sites.
+
+
 The default value is `false`, so existing applications will not display the Dark Mode checkbox unless they explicitly enable it.
 
 ### Property
@@ -210,14 +214,18 @@ Once the user selects a preference using the Dark Mode checkbox, that preference
 
 ### Preference priority
 
-| Saved Preference | System Preference | Result |
-| ---------------- | ----------------- | ------ |
-| No cookie        | Light             | Light  |
-| No cookie        | Dark              | Dark   |
-| `true`           | Light             | Dark   |
-| `true`           | Dark              | Dark   |
-| `false`          | Light             | Light  |
-| `false`          | Dark              | Light  |
+| Site Opt-in      | Saved Preference | System Preference | Result  |
+| ---------------- | ----------------- | ----------------- | ------- |
+| No               |  No cookie        | Light             | Light   |
+| No               |  No cookie        | Dark              | Light   |
+| No               |  `true`           | Dark              | Light   |
+| No               |  `false`          | Dark              | Light   |
+| Yes              |  No cookie        | Light             | Light   |
+| Yes              |  No cookie        | Dark              | Dark    |
+| Yes              |  true             | Light             | Dark    |
+| Yes              |  true             | Dark              | Dark    |
+| Yes              |  false            | Light             | Light   |
+| Yes              |  false            | Dark              | Light   |
 
 This is detected with:
 
@@ -387,11 +395,17 @@ An application using the Dark Mode checkbox should:
 <ilw-header dark-mode-visible></ilw-header>
 ```
 
-### 2. Include the Dark Mode CSS
+### 2. Set `data-dark-mode-supported` to true too opt-in Dark Mode on html element.
+
+```html
+<html data-dark-mode-supported='true'>
+```  
+
+### 3. Include the Dark Mode CSS
 
 The Dark Mode CSS is maintained with `ilw-page`.
 
-### 3. Allow the system preference to provide the default
+### 4. Allow the system preference to provide the default
 
 When there is no saved preference, CSS uses:
 
@@ -401,7 +415,7 @@ When there is no saved preference, CSS uses:
 
 to detect the user's system/browser preference.
 
-### 4. Allow `ilw-header` to manage explicit user preferences
+### 5. Allow `ilw-header` to manage explicit user preferences
 
 The header manages:
 
@@ -414,7 +428,7 @@ The header manages:
 
 ```html
 <ilw-page>
-    <ilw-header dark-mode-visible></ilw-header>
+    <ilw-header dark-mode-visible data-dark-mode-supported="true"></ilw-header>
 
     <main>
         <h1>Example Page</h1>
@@ -556,7 +570,7 @@ data-theme="light"
 | `ilw-header` | Stores preference in `ilw-dark-mode`                  |
 | `ilw-header` | Sets explicit `data-theme`                            |
 | `ilw-header` | Dispatches `ilw-dark-mode-changed`                    |
-| `ilw-page`   | Provides Dark Mode CSS                                |
+| `ilw-page`   | Provides Dark Mode CSS and sets `data-dark-mode-supported`   |
 | CSS          | Detects system preference with `prefers-color-scheme` |
 | Application  | Enables the checkbox with `dark-mode-visible`         |
 
@@ -567,4 +581,6 @@ To enable the Dark Mode checkbox:
 ```
 
 When no explicit user preference exists, the system/browser preference is used. When the user makes an explicit selection, that preference takes precedence and is persisted through the `ilw-dark-mode` cookie.
+
+
 
